@@ -32,7 +32,7 @@ def main():
             print('OFF')
 
             pressDuration = releaseTime - pressTime
-            print('Button pressed for ' + pressDuration.seconds + ' seconds')
+            print('Button pressed for ' + str(pressDuration.seconds) + ' seconds')
             if pressDuration.seconds >= 5:
                 break
 
