@@ -16,10 +16,6 @@ def main():
     pressDuration = 0
     pressed = False
 
-    while pressed:
-        print(pressDuration)
-        time.sleep(1)
-
     with Board() as board:
         while True:
             board.button.wait_for_press()
@@ -27,6 +23,9 @@ def main():
             pressTime = datetime.datetime.now()
             board.led.state = Led.ON
             print('ON')
+            while pressed:
+                print(pressDuration)
+                time.sleep(1)
 
             board.button.wait_for_release()
             pressed = False
