@@ -31,10 +31,10 @@ def main():
                 Leds().pattern = Pattern.blink(500)
                 Leds().update(Leds.rgb_pattern(Color.RED))
                 time.sleep(3)
-                TonePlayer(22).play(['E5q',
-                                     'Be',
-                                     'C5e',
-                                     'D5e'])
+                TonePlayer(22).play(*['E5q',
+                                      'Be',
+                                      'C5e',
+                                      'D5e'])
                 break
 
         print('Done')
