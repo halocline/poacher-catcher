@@ -9,6 +9,9 @@ from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
 
 
 def main():
+    def onButtonPress():
+        print('Button Pressed')
+
     print('Press Button to get started. Ctrl-C to quit.')
 
     count = 0
@@ -16,6 +19,7 @@ def main():
     with Board() as board:
         while True:
             board.button.wait_for_press()
+            onButtonPress
             print('ON')
             board.led.state = Led.ON
             count += 1
