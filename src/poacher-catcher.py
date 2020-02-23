@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # poacher-catcher.py
 #
-#
-#
+
+import datetime
 
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
@@ -15,19 +15,26 @@ def main():
 
     def onButtonPress(count):
         print('Button Pressed')
-        count += 1
         print(count)
         return count
 
     with Board() as board:
         while True:
             board.button.wait_for_press()
-            count = onButtonPress(count)
-            print('ON')
+            pressTime = datetime.datetime.now()
             board.led.state = Led.ON
+            print('ON')
+            count = onButtonPress(count)
+
             board.button.wait_for_release()
-            print('OFF')
+            releaseTime = datetime.datetime.now()
             board.led.state = Led.OFF
+            print('OFF')
+
+            pressDuration = releaseTime - pressTime
+            print('Button pressed for ' + pressDuration.seconds + ' seconds')
+            if pressDuration.seconds >= 5:
+                break
 
         print('Done')
 
