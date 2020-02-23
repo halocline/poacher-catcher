@@ -11,9 +11,10 @@ from aiy.toneplayer import TonePlayer
 
 
 def printPressDuration(pressed):
-    while pressed:
-        print('pressDuration')
-        time.sleep(1)
+    if pressed:
+        while True:
+            print('pressDuration')
+            time.sleep(1)
 
 
 def main():
