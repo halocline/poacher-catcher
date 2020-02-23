@@ -53,7 +53,7 @@ def main():
             print('Running facedetect')
             facedetect()
 
-            leds.update(Leds.rgb_on(Color(255, 20, 147)))
+            leds.update(Leds.rgb_on(255, 20, 147))
 
             board.button.wait_for_release()
             releaseTime = datetime.datetime.now()
