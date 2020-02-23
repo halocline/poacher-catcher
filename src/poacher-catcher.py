@@ -19,7 +19,7 @@ def main():
     with Board() as board:
         while True:
             board.button.wait_for_press()
-            onButtonPress
+            onButtonPress()
             print('ON')
             board.led.state = Led.ON
             count += 1
