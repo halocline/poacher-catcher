@@ -28,8 +28,9 @@ def facedetect():
         # Do inference on VisionBonnet
         with CameraInference(face_detection.model()) as inference:
             for result in inference.run():
-                if len(face_detection.get_faces(result)) >= 2:
-                    camera.capture('faces.jpg')
+                if len(face_detection.get_faces(result)) >= 1:
+                    camera.capture(
+                        'faces_' + str(datetime.datetime.now()) + '.jpg')
                     break
 
         # Stop preview
