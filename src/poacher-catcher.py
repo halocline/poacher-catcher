@@ -29,7 +29,7 @@ def facedetect():
         # Do inference on VisionBonnet
         with CameraInference(face_detection.model()) as inference:
             for result in inference.run():
-                if len(face_detection.get_faces(result)) >= 1:
+                if len(face_detection.get_faces(result)) >= 2:
                     camera.capture(
                         'faces_' + str(datetime.datetime.now()) + '.jpg')
                     break
@@ -65,10 +65,13 @@ def main():
                 time.sleep(3)
                 TonePlayer(22).play(*[
                     'D5e',
-                    'rh',
+                    'rq',
                     'C5e',
-                    'rh',
-                    'Be'
+                    'rq',
+                    'Be',
+                    'Be',
+                    'C5e',
+                    'D5e'
                 ])
                 break
 
