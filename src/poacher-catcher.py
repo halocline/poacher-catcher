@@ -10,17 +10,16 @@ from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
 from aiy.toneplayer import TonePlayer
 
 
-def printPressDuration(pressed):
-    if pressed:
-        while True:
-            print('pressDuration')
-            time.sleep(1)
+def printPressDuration():
+    print('pressDuration')
+    time.sleep(1)
 
 
 def main():
     print('Press Button start. Hold Button for 5 seconds (or press Ctrl-C) to quit.')
 
     pressDuration = 0
+    pressed = False
 
     with Board() as board:
         while True:
@@ -28,13 +27,14 @@ def main():
             pressTime = datetime.datetime.now()
             board.led.state = Led.ON
             print('ON')
-            printPressDuration(True)
 
             board.button.wait_for_release()
-            printPressDuration(False)
             releaseTime = datetime.datetime.now()
             board.led.state = Led.OFF
             print('OFF')
+
+            while pressed:
+                printPressDuration()
 
             pressDuration = releaseTime - pressTime
             print('Button pressed for ' + str(pressDuration.seconds) + ' seconds')
