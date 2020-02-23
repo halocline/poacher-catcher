@@ -53,13 +53,15 @@ def main():
             print('Running facedetect')
             facedetect()
 
+            leds.update(Leds.rgb_on(Color(255, 20, 147)))
+
             board.button.wait_for_release()
             releaseTime = datetime.datetime.now()
             board.led.state = Led.OFF
             print('OFF')
 
             pressDuration = releaseTime - pressTime
-            print('Button pressed for ' + str(pressDuration.seconds) + ' seconds')
+            print('Program ran for ' + str(pressDuration.seconds) + ' seconds')
             if pressDuration.seconds >= 5:
                 leds.update(Leds.rgb_on(Color.PURPLE))
                 time.sleep(3)
@@ -69,6 +71,7 @@ def main():
                     'C5e',
                     'rq',
                     'Be',
+                    'rq',
                     'Be',
                     'C5e',
                     'D5e'
