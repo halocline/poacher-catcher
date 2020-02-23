@@ -9,14 +9,9 @@ from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
 
 
 def main():
-    print('Press Button to get started. Ctrl-C to quit.')
+    print('Press Button start. Hold Button for 5 seconds (or press Ctrl-C) to quit.')
 
-    count = 0
-
-    def onButtonPress(count):
-        print('Button Pressed')
-        print(count)
-        return count
+    Leds().update(Leds.rgb_on(Color.PURPLE))
 
     with Board() as board:
         while True:
@@ -24,7 +19,6 @@ def main():
             pressTime = datetime.datetime.now()
             board.led.state = Led.ON
             print('ON')
-            count = onButtonPress(count)
 
             board.button.wait_for_release()
             releaseTime = datetime.datetime.now()
