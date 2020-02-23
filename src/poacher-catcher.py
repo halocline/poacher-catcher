@@ -17,11 +17,12 @@ def main():
         print('Button Pressed')
         count += 1
         print(count)
+        return count
 
     with Board() as board:
         while True:
             board.button.wait_for_press()
-            onButtonPress(count)
+            count = onButtonPress(count)
             print('ON')
             board.led.state = Led.ON
             board.button.wait_for_release()
