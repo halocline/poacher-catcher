@@ -20,10 +20,11 @@ def printPressDuration():
 
 
 def facedetect():
-    with PiCamera() as camera:
+    with PiCamera() as camera, Leds() as leds:
         # Configure camera
         camera.resolution = (1640, 922)  # Full Frame, 16:9 (Camera v2)
         camera.start_preview()
+        leds.update(Leds.privacy_on())
 
         # Do inference on VisionBonnet
         with CameraInference(face_detection.model()) as inference:
@@ -35,6 +36,7 @@ def facedetect():
 
         # Stop preview
         camera.stop_preview()
+        leds.update(Leds.privacy_on())
 
 
 def main():
@@ -42,7 +44,7 @@ def main():
 
     pressDuration = 0
 
-    with Board() as board:
+    with Board() as board, Leds() as leds:
         while True:
             board.button.wait_for_press()
             pressTime = datetime.datetime.now()
@@ -59,11 +61,13 @@ def main():
             pressDuration = releaseTime - pressTime
             print('Button pressed for ' + str(pressDuration.seconds) + ' seconds')
             if pressDuration.seconds >= 5:
-                Leds().update(Leds.rgb_on(Color.PURPLE))
+                leds.update(Leds.rgb_on(Color.PURPLE))
                 time.sleep(3)
                 TonePlayer(22).play(*[
                     'D5e',
+                    'rh',
                     'C5e',
+                    'rh',
                     'Be'
                 ])
                 break
