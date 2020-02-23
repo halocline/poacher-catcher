@@ -42,7 +42,7 @@ def main():
             print('Button pressed for ' + str(pressDuration.seconds) + ' seconds')
             if pressDuration.seconds >= 5:
                 Leds().pattern = Pattern.blink(500)
-                Leds().update(Leds.rgb_pattern(Color.RED))
+                Leds().update(Leds.rgb_pattern(Color.PURPLE))
                 time.sleep(3)
                 TonePlayer(22).play(*['E5q',
                                       'Be',
