@@ -41,13 +41,15 @@ def main():
             pressDuration = releaseTime - pressTime
             print('Button pressed for ' + str(pressDuration.seconds) + ' seconds')
             if pressDuration.seconds >= 5:
-                Leds().pattern = Pattern.blink(500)
-                Leds().update(Leds.rgb_pattern(Color.PURPLE))
+                Leds().update(Leds.rgb_on(Color.PURPLE))
                 time.sleep(3)
                 TonePlayer(22).play(*['E5q',
                                       'Be',
                                       'C5e',
-                                      'D5e'])
+                                      'D5e',
+                                      'D5e',
+                                      'C5e',
+                                      'Be'])
                 break
 
         print('Done')
