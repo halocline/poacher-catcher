@@ -7,7 +7,8 @@
 import math
 import time
 
-from aiy.leds import (Board, Led, Leds, Pattern, PrivacyLed, RgbLeds, Color)
+from aiy.board import Board, Led
+from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
 
 
 def main():
