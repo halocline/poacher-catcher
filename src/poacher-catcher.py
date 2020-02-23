@@ -13,14 +13,23 @@ from aiy.toneplayer import TonePlayer
 def main():
     print('Press Button start. Hold Button for 5 seconds (or press Ctrl-C) to quit.')
 
+    pressDuration = 0
+    pressed = False
+
+    while pressed:
+        print(pressDuration)
+        time.sleep(1)
+
     with Board() as board:
         while True:
             board.button.wait_for_press()
+            pressed = True
             pressTime = datetime.datetime.now()
             board.led.state = Led.ON
             print('ON')
 
             board.button.wait_for_release()
+            pressed = False
             releaseTime = datetime.datetime.now()
             board.led.state = Led.OFF
             print('OFF')
