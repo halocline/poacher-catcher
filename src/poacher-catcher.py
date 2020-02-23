@@ -24,11 +24,13 @@ def main():
     with Board() as board:
         while True:
             board.button.wait_for_press()
+            pressed = True
             pressTime = datetime.datetime.now()
             board.led.state = Led.ON
             print('ON')
 
             board.button.wait_for_release()
+            pressed = False
             releaseTime = datetime.datetime.now()
             board.led.state = Led.OFF
             print('OFF')
