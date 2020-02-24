@@ -12,11 +12,11 @@ from aiy.toneplayer import TonePlayer
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 
-from gpiozero import GPIODevice
+from gpiozero import OutputDevice
 
 from picamera import PiCamera
 
-device = GPIODevice(PIN_A)
+device = OutputDevice(PIN_A)
 
 
 def printPressDuration():
