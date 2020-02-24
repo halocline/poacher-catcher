@@ -17,6 +17,7 @@ from gpiozero import OutputDevice, Buzzer
 from picamera import PiCamera
 
 device = OutputDevice(PIN_A)
+bz = Buzzer(PIN_B)
 
 
 def printPressDuration():
@@ -30,8 +31,6 @@ def facedetect():
         camera.resolution = (1640, 922)  # Full Frame, 16:9 (Camera v2)
         camera.start_preview()
         leds.update(Leds.privacy_on())
-
-        bz = Buzzer(PIN_B)
 
         # Do inference on VisionBonnet
         with CameraInference(face_detection.model()) as inference:
@@ -65,7 +64,7 @@ def main():
             print('Running facedetect')
             facedetect()
 
-            leds.update(Leds.rgb_on((193, 255, 148)))
+            leds.update(Leds.rgb_on((107, 255, 0)))
 
             board.button.wait_for_release()
             releaseTime = datetime.datetime.now()
