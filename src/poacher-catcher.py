@@ -38,8 +38,8 @@ def facedetect():
                     camera.capture(
                         'faces_' + str(datetime.datetime.now()) + '.jpg')
                     device.on()
-                    time.sleep(200)
-                    device.off()
+                    # time.sleep(200)
+                    # device.off()
                     break
 
         # Stop preview
