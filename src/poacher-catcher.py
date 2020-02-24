@@ -51,11 +51,29 @@ def facedetect():
 
 
 def main():
-    print('Press Button start. Hold Button for 5 seconds (or press Ctrl-C) to quit.')
+    print('Press Button start. Press Button to stop camera. Press Button again (or press Ctrl-C) to quit.')
 
     pressDuration = 0
 
     with Board() as board, Leds() as leds:
+        board.led.state = Led.ON
+        leds.pattern = Pattern.breathe(1000)
+        leds.update(Leds.rgb_pattern(Color.RED))
+        time.sleep(0.3)
+        leds.update(Leds.rgb_pattern(Color.YELLOW))
+        time.sleep(0.3)
+        leds.update(Leds.rgb_pattern(Color.GREEN))
+        time.sleep(0.3)
+        leds.update(Leds.rgb_pattern(Color.CYAN))
+        time.sleep(0.3)
+        leds.update(Leds.rgb_pattern(Color.BLUE))
+        time.sleep(0.3)
+        leds.update(Leds.rgb_pattern(Color.PURPLE))
+        time.sleep(0.3)
+        leds.update(Leds.rgb_pattern(Color.BLACK))
+        time.sleep(0.3)
+        board.led.state = Led.OFF
+
         while True:
             board.button.wait_for_press()
             pressTime = datetime.datetime.now()
