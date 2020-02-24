@@ -7,6 +7,7 @@ import time
 
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
+from aiy.pins import PIN_A
 from aiy.toneplayer import TonePlayer
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
@@ -29,9 +30,12 @@ def facedetect():
         # Do inference on VisionBonnet
         with CameraInference(face_detection.model()) as inference:
             for result in inference.run():
-                if len(face_detection.get_faces(result)) >= 2:
+                if len(face_detection.get_faces(result)) >= 1:
                     camera.capture(
                         'faces_' + str(datetime.datetime.now()) + '.jpg')
+                    PIN_A.on()
+                    time.sleep(200)
+                    PIN_A.off()
                     break
 
         # Stop preview
