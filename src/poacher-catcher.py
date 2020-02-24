@@ -59,19 +59,19 @@ def main():
         board.led.state = Led.ON
         leds.pattern = Pattern.breathe(1000)
         leds.update(Leds.rgb_pattern(Color.RED))
-        time.sleep(0.3)
+        time.sleep(1)
         leds.update(Leds.rgb_pattern(Color.YELLOW))
-        time.sleep(0.3)
+        time.sleep(1)
         leds.update(Leds.rgb_pattern(Color.GREEN))
-        time.sleep(0.3)
+        time.sleep(1)
         leds.update(Leds.rgb_pattern(Color.CYAN))
-        time.sleep(0.3)
+        time.sleep(1)
         leds.update(Leds.rgb_pattern(Color.BLUE))
-        time.sleep(0.3)
+        time.sleep(1)
         leds.update(Leds.rgb_pattern(Color.PURPLE))
-        time.sleep(0.3)
+        time.sleep(1)
         leds.update(Leds.rgb_pattern(Color.BLACK))
-        time.sleep(0.3)
+        time.sleep(1)
         board.led.state = Led.OFF
 
         while True:
