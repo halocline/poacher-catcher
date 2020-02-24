@@ -7,7 +7,7 @@ import time
 
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
-from aiy.pins import PIN_A
+from aiy.pins import PIN_A, PIN_B
 from aiy.toneplayer import TonePlayer
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
@@ -31,7 +31,7 @@ def facedetect():
         camera.start_preview()
         leds.update(Leds.privacy_on())
 
-        bz = Buzzer(PIN_A)
+        bz = Buzzer(PIN_B)
 
         # Do inference on VisionBonnet
         with CameraInference(face_detection.model()) as inference:
