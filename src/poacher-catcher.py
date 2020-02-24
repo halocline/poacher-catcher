@@ -37,7 +37,10 @@ def facedetect():
                 if len(face_detection.get_faces(result)) >= 1:
                     camera.capture(
                         'faces_' + str(datetime.datetime.now()) + '.jpg')
+                    print(device.is_active)
                     device.on()
+                    print(device.is_active)
+                    # device.on()
                     # time.sleep(200)
                     # device.off()
                     break
