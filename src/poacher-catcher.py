@@ -44,7 +44,8 @@ def facedetect():
                     # time.sleep(200)
                     # device.off()
                     # break
-                    continue
+                    Board().button.wait_for_press()
+                    break
 
         # Stop preview
         camera.stop_preview()
