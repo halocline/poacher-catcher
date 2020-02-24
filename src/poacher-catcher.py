@@ -55,57 +55,49 @@ def main():
 
     pressDuration = 0
 
-    with Board() as board, Leds() as leds:
+
+with Board() as board, Leds() as leds:
+    colors = [Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN,
+              Color.BLUE, Color.PURPLE, Color.BLACK, Color.WHITE]
+    board.led.state = Led.ON
+    leds.pattern = Pattern.breathe(1000)
+    for color in colors:
+        leds.update(Leds.rgb_pattern(color))
+        time.sleep(2)
+    board.led.state = Led.OFF
+
+    while True:
+        board.button.wait_for_press()
+        pressTime = datetime.datetime.now()
         board.led.state = Led.ON
-        leds.pattern = Pattern.breathe(1000)
-        leds.update(Leds.rgb_pattern(Color.RED))
-        time.sleep(1)
-        leds.update(Leds.rgb_pattern(Color.YELLOW))
-        time.sleep(1)
-        leds.update(Leds.rgb_pattern(Color.GREEN))
-        time.sleep(1)
-        leds.update(Leds.rgb_pattern(Color.CYAN))
-        time.sleep(1)
-        leds.update(Leds.rgb_pattern(Color.BLUE))
-        time.sleep(1)
-        leds.update(Leds.rgb_pattern(Color.PURPLE))
-        time.sleep(1)
-        leds.update(Leds.rgb_pattern(Color.BLACK))
-        time.sleep(1)
+        print('ON')
+        print('Running facedetect')
+        facedetect()
+
+        leds.update(Leds.rgb_on((107, 255, 0)))
+
+        board.button.wait_for_release()
+        releaseTime = datetime.datetime.now()
         board.led.state = Led.OFF
+        print('OFF')
 
-        while True:
-            board.button.wait_for_press()
-            pressTime = datetime.datetime.now()
-            board.led.state = Led.ON
-            print('ON')
-            print('Running facedetect')
-            facedetect()
-
-            leds.update(Leds.rgb_on((107, 255, 0)))
-
-            board.button.wait_for_release()
-            releaseTime = datetime.datetime.now()
-            board.led.state = Led.OFF
-            print('OFF')
-
-            pressDuration = releaseTime - pressTime
-            print('Program ran for ' + str(pressDuration.seconds) + ' seconds')
-            if pressDuration.seconds >= 5:
-                leds.update(Leds.rgb_on(Color.PURPLE))
-                time.sleep(3)
-                TonePlayer(22).play(*[
-                    'D5e',
-                    'rq',
-                    'C5e',
-                    'rq',
-                    'Be',
-                    'rq',
-                    'Be',
-                    'C5e',
-                    'D5e'
-                ])
-                break
+        pressDuration = releaseTime - pressTime
+        print('Program ran for ' + str(pressDuration.seconds) + ' seconds')
+        if pressDuration.seconds >= 5:
+            leds.update(Leds.rgb_on(Color.PURPLE))
+            time.sleep(3)
+            TonePlayer(22).play(*[
+                'D5e',
+                'rq',
+                'C5e',
+                'rq',
+                'Be',
+                'rq',
+                'Be',
+                'C5e',
+                'D5e'
+            ])
+            break
 
         print('Done')
 
