@@ -12,7 +12,11 @@ from aiy.toneplayer import TonePlayer
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 
+from gpiozero import PWMOutputDevice
+
 from picamera import PiCamera
+
+device = PWMOutputDevice(PIN_A)
 
 
 def printPressDuration():
@@ -33,9 +37,9 @@ def facedetect():
                 if len(face_detection.get_faces(result)) >= 1:
                     camera.capture(
                         'faces_' + str(datetime.datetime.now()) + '.jpg')
-                    PIN_A.on()
+                    device.on()
                     time.sleep(200)
-                    PIN_A.off()
+                    device.off()
                     break
 
         # Stop preview
