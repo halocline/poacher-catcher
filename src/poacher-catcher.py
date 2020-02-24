@@ -12,7 +12,7 @@ from aiy.toneplayer import TonePlayer
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 
-from gpiozero import OutputDevice
+from gpiozero import OutputDevice, Buzzer
 
 from picamera import PiCamera
 
@@ -31,6 +31,8 @@ def facedetect():
         camera.start_preview()
         leds.update(Leds.privacy_on())
 
+        bz = Buzzer(PIN_A)
+
         # Do inference on VisionBonnet
         with CameraInference(face_detection.model()) as inference:
             for result in inference.run():
@@ -39,11 +41,8 @@ def facedetect():
                         'faces_' + str(datetime.datetime.now()) + '.jpg')
                     print(device.is_active)
                     device.on()
+                    bz.on()
                     print(device.is_active)
-                    # device.on()
-                    # time.sleep(200)
-                    # device.off()
-                    # break
                     Board().button.wait_for_press()
                     break
 
@@ -66,7 +65,7 @@ def main():
             print('Running facedetect')
             facedetect()
 
-            leds.update(Leds.rgb_on((255, 20, 147)))
+            leds.update(Leds.rgb_on((193, 255, 148)))
 
             board.button.wait_for_release()
             releaseTime = datetime.datetime.now()
