@@ -43,7 +43,8 @@ def facedetect():
                     # device.on()
                     # time.sleep(200)
                     # device.off()
-                    break
+                    # break
+                    continue
 
         # Stop preview
         camera.stop_preview()
