@@ -44,7 +44,7 @@ def facedetect():
                     device.on()
                     # bz.on()
                     # led.on()
-                    print(led.is_active)
+                    # print(led.is_active)
                     print(device.is_active)
                     break
 
@@ -58,10 +58,9 @@ def startup():
         colors = [Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN,
                   Color.BLUE, Color.PURPLE, Color.BLACK, Color.WHITE]
         board.led.state = Led.ON
-        leds.pattern = Pattern.breathe(1000)
         for color in colors:
             leds.update(Leds.rgb_pattern(color))
-            time.sleep(2)
+            time.sleep(1)
         TonePlayer(22).play(*[
             'Be',
             'rs',
@@ -73,9 +72,9 @@ def startup():
 
 
 def main():
+    startup()
     print('Press Button start. Press Button to stop camera.'
           + 'Press Button again (or press Ctrl-C) to quit.')
-    startup()
 
     pressDuration = 0
 
