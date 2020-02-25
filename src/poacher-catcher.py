@@ -16,9 +16,9 @@ from aiy.vision.models import face_detection
 
 from picamera import PiCamera
 
-# device = OutputDevice(PIN_A)
+device = OutputDevice(PIN_A)
 bz = Buzzer(PIN_B)
-led = LED(PIN_A)
+# led = LED(PIN_A)
 
 
 def printPressDuration():
@@ -39,16 +39,14 @@ def facedetect():
                 if len(face_detection.get_faces(result)) >= 1:
                     camera.capture(
                         'faces_' + str(datetime.datetime.now()) + '.jpg')
-                    # print(device.is_active)
+                    print(device.is_active)
                     print(led.is_active)
-                    # device.on()
+                    device.on()
                     # bz.on()
-                    led.on()
+                    # led.on()
                     print(led.is_active)
-                    time.sleep(3)
-                    # print(device.is_active)
-                    continue
-            Board().button.wait_for_press()
+                    print(device.is_active)
+                    break
 
         # Stop preview
         camera.stop_preview()
