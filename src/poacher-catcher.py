@@ -59,7 +59,7 @@ def startup():
                   Color.BLUE, Color.PURPLE, Color.BLACK, Color.WHITE]
         board.led.state = Led.ON
         for color in colors:
-            leds.update(Leds.on(color))
+            leds.update(Leds.rgb_on(color))
             time.sleep(1)
         TonePlayer(22).play(*[
             'Be',
