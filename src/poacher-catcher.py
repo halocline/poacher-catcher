@@ -5,6 +5,8 @@
 import datetime
 import time
 
+from gpiozero import OutputDevice, Buzzer, LED
+
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
 from aiy.pins import PIN_A, PIN_B
@@ -12,12 +14,11 @@ from aiy.toneplayer import TonePlayer
 from aiy.vision.inference import CameraInference
 from aiy.vision.models import face_detection
 
-from gpiozero import OutputDevice, Buzzer
-
 from picamera import PiCamera
 
-device = OutputDevice(PIN_A)
+# device = OutputDevice(PIN_A)
 bz = Buzzer(PIN_B)
+led = LED(PIN_A)
 
 
 def printPressDuration():
@@ -38,10 +39,14 @@ def facedetect():
                 if len(face_detection.get_faces(result)) >= 1:
                     camera.capture(
                         'faces_' + str(datetime.datetime.now()) + '.jpg')
-                    print(device.is_active)
-                    device.on()
+                    # print(device.is_active)
+                    print(led.is_active)
+                    # device.on()
                     # bz.on()
-                    print(device.is_active)
+                    led.on()
+                    print(led.is_active)
+                    time.sleep(3)
+                    # print(device.is_active)
                     continue
             Board().button.wait_for_press()
 
