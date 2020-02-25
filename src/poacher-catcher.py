@@ -45,8 +45,10 @@ def facedetect():
                     # bz.on()
                     led.on()
                     print(led.is_active)
-                    time.sleep(3)
+                    time.sleep(1)
                     # print(device.is_active)
+                    led.off()
+                    print(led.is_active)
                     break
 
         # Stop preview
