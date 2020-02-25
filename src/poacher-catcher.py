@@ -39,11 +39,11 @@ def facedetect():
                     camera.capture(
                         'faces_' + str(datetime.datetime.now()) + '.jpg')
                     print(device.is_active)
-                    # device.on()
+                    device.on()
                     # bz.on()
                     print(device.is_active)
-                    Board().button.wait_for_press()
-                    break
+                    continue
+            Board().button.wait_for_press()
 
         # Stop preview
         camera.stop_preview()
