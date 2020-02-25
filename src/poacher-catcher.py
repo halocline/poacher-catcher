@@ -42,6 +42,7 @@ def facedetect():
                     print(device.is_active)
                     # print(led.is_active)
                     device.on()
+                    time.sleep(3)
                     # bz.on()
                     # led.on()
                     # print(led.is_active)
@@ -60,7 +61,7 @@ def startup():
         board.led.state = Led.ON
         for color in colors:
             leds.update(Leds.rgb_on(color))
-            time.sleep(1)
+            time.sleep(0.5)
         TonePlayer(22).play(*[
             'Be',
             'rs',
